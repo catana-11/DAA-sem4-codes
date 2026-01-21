@@ -196,7 +196,6 @@ class mobileuser{
 
 
 
-
 int main(){
    mobileuser m[20];
    int n;
