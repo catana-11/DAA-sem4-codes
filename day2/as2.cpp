@@ -15,7 +15,9 @@ class node{
 class graph{
 
     int n; // vertices
-    node *head[];
+    node *head[20];
+    public:
+    int visited[20] = {0};
 
     public:
 
@@ -96,6 +98,32 @@ class graph{
             }
         }
     }
+
+
+    void DFT_rec(int s){
+        // s is starting vertex
+
+        visited[s] = 1;
+
+        cout<<"\n["<<head[s]->userid<<"]";
+
+        node *temp;
+        temp = head[s]->next;
+
+        while(temp!=NULL){
+
+            int v = temp->userid;
+
+            //cout<<"\n["<<head[s]->userid<<"]";
+
+            if (visited[v]==0){
+                DFT_rec(v);
+                
+            }
+            temp = temp->next;
+        }
+
+    }
 };
 
 
@@ -107,6 +135,15 @@ int main(){
 
     g.create_adj_list();
     g.display_list();
+    for (int i=0; i<20; i++){
+        g.visited[i] = 0;
+    }
+    
+
+    cout<<"\nDepth first recursive:";
+    int s;
+    cout<<"\nEnter start vertex userid: "; cin>>s;
+    g.DFT_rec(s);
 
 
     return 0;
