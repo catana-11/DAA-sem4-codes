@@ -269,7 +269,6 @@ class graph{
 
         for (int i=0; i<n; i++) visited[i]=0;
 
-
         queue_object.enqueue(s);
         visited[s] = 1;
 
@@ -298,8 +297,6 @@ class graph{
 };
 
 
-
-
 int main(){
 
     cout<<"\nMain program:\n";
@@ -308,21 +305,48 @@ int main(){
 
     g.create_adj_list();
     g.display_list();
-    for (int i=0; i<20; i++){
-        g.visited[i] = 0;
+
+    char cont = 'y';
+    int switch_choice  = 0;
+
+    while(cont=='y'){
+
+        cout<<"\nMenu:\n1.Display list\n2. Depth first rec\n3. Depth first nonrec\n4.BFT\nEnter choice: "; cin>>switch_choice;
+        int s;
+
+        switch (switch_choice){
+
+            case 1:
+                g.display_list();
+                break;
+
+            case 2:
+                for (int i=0; i<20; i++){
+                    g.visited[i] = 0;
+                }
+                cout<<"\nDepth first recursive:";
+
+                cout<<"\nEnter start vertex userid: "; cin>>s;
+
+                cout<<"Depth first traversal rec:\n";
+                g.DFT_rec(s);
+                break;
+
+            case 3:
+                cout<<"\nEnter start vertex userid: "; cin>>s;
+                g.DFT_nonrec(s);
+                break;
+
+            case 4:
+                cout<<"\nEnter start vertex userid: "; cin>>s;
+                g.BFT(s);
+                break;
+
+        }
+
+        cout<<"\nDo you want to continue traversals? Enter y or n: "; cin>>cont;
     }
     
-
-    cout<<"\nDepth first recursive:";
-    int s;
-    cout<<"\nEnter start vertex userid: "; cin>>s;
-    cout<<"Depth first traversal rec:\n";
-    g.DFT_rec(s);
-
-    g.DFT_nonrec(s);
-
-    g.BFT(s);
-
     return 0;
 }
 
