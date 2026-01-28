@@ -124,6 +124,84 @@ class graph{
         }
 
     }
+
+    void DFT_nonrec(int s){
+
+        cout<<"\nDepth first traversal (non-rec):\n";
+
+        for (int i=0; i<n; i++){
+            visited[i]=0;
+        }
+
+        int stack[20];
+        int top = -1;
+
+        top++;
+        stack[top] = s;
+        visited[s]= 1;
+        // hence added the start vertex
+
+        while(top!=-1){
+            int v = stack[top];
+            top--;
+
+            cout<<"\n["<<head[v]->userid<<"]";
+
+            node *temp = head[v]->next;
+
+            while(temp!=NULL){
+
+                int w = temp->userid;
+
+                if (visited[w]==0){
+
+                    top++;
+                    stack[top] = w;
+                    visited[w] = 1;
+
+                }
+                temp = temp->next;
+            }
+
+        }
+    }
+
+    void BFT(int s){
+
+        cout<<"\nBreadth first traversal:\n";
+
+        for (int i=0; i<n; i++) visited[i]=0;
+
+        int queue[20];
+        int front = -1; int rear = -1;
+
+        rear++;
+        queue[rear] = s;
+        visited[s] = 1;
+
+        while (front!=rear){
+            front++;
+            int v = queue[front];
+            cout<<"\n["<<head[v]->userid<<"]";
+
+            node *temp = head[v]->next;
+
+            while (temp!=NULL){
+
+                int w = temp->userid;
+
+                if (visited[w]==0){
+                    rear++;
+                    queue[rear] = w;
+                    visited[w] = 1;
+                }
+
+                temp = temp->next;
+
+            }
+        }
+
+    }
 };
 
 
@@ -143,8 +221,12 @@ int main(){
     cout<<"\nDepth first recursive:";
     int s;
     cout<<"\nEnter start vertex userid: "; cin>>s;
+    cout<<"Depth first traversal rec:\n";
     g.DFT_rec(s);
 
+    g.DFT_nonrec(s);
+
+    g.BFT(s);
 
     return 0;
 }
