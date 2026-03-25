@@ -44,6 +44,8 @@ class avl_tree{
         }
 
         avl_node *rr_rotation(avl_node* parent){
+
+            cout<<"\nPerforming RR on "<<parent->word;
             avl_node* temp = parent->right;
             parent->right = temp->left;
             temp->left = parent;
@@ -53,6 +55,8 @@ class avl_tree{
 
         avl_node *ll_rotation(avl_node* parent){
 
+            cout<<"\nPerforming LL on "<<parent->word;
+
             avl_node * temp = parent->left;
             parent->left = temp->right;
             temp->right = parent;
@@ -60,6 +64,8 @@ class avl_tree{
         }
         
         avl_node *lr_rotation(avl_node* parent){
+
+            cout<<"\nPerforming LR on "<<parent->word;
 
             avl_node *temp = parent->left;
             parent->left = rr_rotation (temp); //calling RR rotation
@@ -69,6 +75,8 @@ class avl_tree{
         }
 
         avl_node *rl_rotation(avl_node* parent){
+
+            cout<<"\nPerforming RL on "<<parent->word;
             avl_node *temp = parent->right;
             parent->right = ll_rotation (temp); // calling LL rotation
             return rr_rotation (parent);
